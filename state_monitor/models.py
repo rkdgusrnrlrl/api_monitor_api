@@ -23,13 +23,21 @@ class APIMonitorRequest(models.Model):
     api_req_id = models.AutoField(primary_key=True)
     api_name = models.CharField(max_length=100)
     api_base_url = models.TextField()
+    req_url = models.CharField(max_length=100)
     req_body = models.TextField()
+    req_headers = models.TextField()
     req_method = models.CharField(
         max_length=6,
         choices=REQ_METHOD_CHOICES,
         default="GET"
     )
     req_qs = models.TextField()
+
+    def get_headers(self):
+        try:
+            return json.loads(self.req_headers)
+        except ValueError:
+            return {}
 
     def get_body(self):
         try:
@@ -40,4 +48,3 @@ class APIMonitorRequest(models.Model):
     def set_req_body(self, req_body):
         json.load(req_body)
         self.req_body = req_body
-
