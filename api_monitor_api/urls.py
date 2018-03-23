@@ -24,4 +24,5 @@ router.register(r'logs', views.APICallLogViewSet)
 urlpatterns = [
     path(r'api/', include(router.urls)),
     path(r'auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('admin/', admin.site.urls),
 ]
