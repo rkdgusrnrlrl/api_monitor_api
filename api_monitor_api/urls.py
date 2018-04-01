@@ -20,6 +20,7 @@ from state_monitor import views
 
 router = routers.DefaultRouter()
 router.register(r'logs', views.APICallLogViewSet)
+router.register(r'requests', views.APIMonitorRequestViewSet)
 
 urlpatterns = [
     path(r'api/', include(router.urls)),
