@@ -24,14 +24,15 @@ class APIMonitorRequest(models.Model):
     api_name = models.CharField(max_length=100)
     api_base_url = models.TextField()
     req_url = models.CharField(max_length=100)
-    req_body = models.TextField()
-    req_headers = models.TextField()
+    req_body = models.TextField(blank=True)
+    req_headers = models.TextField(blank=True)
     req_method = models.CharField(
         max_length=6,
         choices=REQ_METHOD_CHOICES,
         default="GET"
     )
-    req_qs = models.TextField()
+    req_qs = models.TextField(blank=True)
+    created_at = models.DateField(auto_now_add=True)
 
     def get_headers(self):
         try:
