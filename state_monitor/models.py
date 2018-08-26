@@ -1,6 +1,13 @@
 from django.db import models
 import json
 
+METHOD_CHOICES = (
+        ('GET', 'GET'),
+        ('POST', 'POST'),
+        ('PUT', 'PUT'),
+        ('DELETE', 'DELETE'),
+    )
+
 class APICallLog(models.Model):
     call_id = models.AutoField(primary_key=True)
     api_name = models.CharField(max_length=100)
@@ -10,6 +17,23 @@ class APICallLog(models.Model):
     req_body = models.TextField()
     res_body = models.TextField()
     res_second = models.FloatField()
+
+
+class APIStatus(models.Model):
+    API_STATUS_CHOICES = (
+        ('SUCCESS', '성공'),
+        ('FAIL', '실패'),
+    )
+    status_id = models.AutoField(primary_key=True)
+    api_name = models.CharField(max_length=100)
+    method = models.CharField(
+        max_length=6,
+        choices=METHOD_CHOICES,
+        default="GET"
+    )
+    full_url = models.TextField()
+    check_time = models.DateTimeField(auto_now_add=True)
+    status = models.CharField(max_length=10, choices=API_STATUS_CHOICES)
 
 
 class APIMonitorRequest(models.Model):
