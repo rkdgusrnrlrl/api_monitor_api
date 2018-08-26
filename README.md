@@ -11,6 +11,7 @@ $ git clone https://github.com/rkdgusrnrlrl/api_monitor_api.git
 $ cd api_monitor_api
 $ python3 -m venv venv
 $ source venv/bin/activate
+(venv) pip install -r requirments.txt  # or pip install -r requirments.txt 
 (venv) python manage.py migrate
 (venv) python manage.py runserver
 ```
