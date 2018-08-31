@@ -1,26 +1,32 @@
-from .models import APICallLog, APIMonitorRequest
+from state_monitor.models import APIStatus, Application, API
 from rest_framework import serializers
 
-class APICallLogSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = APICallLog
-        fields = ('call_id','api_name',
-                  'created_at','status',
-                  'full_url','req_body',
-                  'res_body','res_second','url')
 
-
-class APIMonitorRequestSerializer(serializers.HyperlinkedModelSerializer):
+class APIStatusSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = APIMonitorRequest
+        model = APIStatus
         fields = (
-            'api_req_id',
-            'api_name',
-            'api_base_url',
-            'req_url',
-            'req_body',
-            'req_headers',
-            'req_method',
-            'req_qs',
+            'status_id',
+            'full_url',
+            'check_time',
+            'status',
         )
 
+
+class ApplicationSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Application
+        fields = (
+            'app_id',
+            'name',
+        )
+
+
+class APISerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = API
+        fields = (
+            'api_id',
+            'name',
+            'status',
+        )
