@@ -14,5 +14,7 @@ class ApplicationViewSet(viewsets.ModelViewSet):
 
 
 class APIViewSet(viewsets.ModelViewSet):
-    queryset = API.objects.all()
     serializer_class = APISerializer
+
+    def get_queryset(self):
+        return API.objects.filter(application=self.kwargs['application_pk'])

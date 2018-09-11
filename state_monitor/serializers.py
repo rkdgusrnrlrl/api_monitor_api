@@ -7,7 +7,6 @@ class APIStatusSerializer(serializers.HyperlinkedModelSerializer):
         model = APIStatus
         fields = (
             'status_id',
-            'full_url',
             'check_time',
             'status',
         )
@@ -23,10 +22,12 @@ class ApplicationSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class APISerializer(serializers.HyperlinkedModelSerializer):
+    last_status = APIStatusSerializer()
+
     class Meta:
         model = API
         fields = (
             'api_id',
             'name',
-            'status',
+            'last_status',
         )
