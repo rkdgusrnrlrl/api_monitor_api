@@ -29,5 +29,7 @@ class APISerializer(serializers.HyperlinkedModelSerializer):
         fields = (
             'api_id',
             'name',
+            'full_url',
+            'method',
             'last_status',
         )
