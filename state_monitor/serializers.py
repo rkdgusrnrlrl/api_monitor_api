@@ -18,6 +18,7 @@ class ApplicationSerializer(serializers.HyperlinkedModelSerializer):
         fields = (
             'app_id',
             'name',
+            'base_url',
         )
 
 
