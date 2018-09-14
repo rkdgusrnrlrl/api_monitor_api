@@ -18,13 +18,17 @@ class Application(models.Model):
 class API(models.Model):
     api_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
-    full_url = models.TextField()
+    api_url = models.TextField()
     method = models.CharField(max_length=6, choices=METHOD_CHOICES, default="GET")
     application = models.ForeignKey(Application, on_delete=models.CASCADE)
 
     @property
     def last_status(self):
         return self.apistatus_set.all().order_by('-check_time').first()
+
+    @property
+    def full_url(self):
+        return self.application.base_url + self.api_url
 
 
 class APIStatus(models.Model):
