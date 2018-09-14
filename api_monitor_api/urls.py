@@ -22,11 +22,17 @@ router = routers.SimpleRouter()
 router.register(r'applications', views.ApplicationViewSet)
 
 application_router = routers.NestedSimpleRouter(router, r'applications', lookup='application')
-application_router.register(r'apis', views.APIViewSet, base_name='application-apis')
+application_router.register(r'apis', views.APIViewSet, base_name='apis')
+
+
+api_router = routers.NestedSimpleRouter(application_router, r'apis', lookup='api')
+api_router.register(r'status', views.APIStatusVeiwSet, base_name="status")
+
 
 urlpatterns = [
     path(r'api/', include(router.urls)),
     path(r'api/', include(application_router.urls)),
+    path(r'api/', include(api_router.urls)),
     path(r'auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('admin/', admin.site.urls),
 ]
