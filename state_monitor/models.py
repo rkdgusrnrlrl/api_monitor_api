@@ -12,6 +12,7 @@ METHOD_CHOICES = (
 class Application(models.Model):
     app_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=100)
+    base_url = models.TextField()
 
 
 class API(models.Model):
