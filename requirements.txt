@@ -9,7 +9,7 @@ Django==2.0.3
 django-celery-beat==1.1.1
 django-celery-results==1.0.1
 django-cors-headers==2.4.0
-djangorestframework==3.7.7
+djangorestframework==3.9.1
 drf-nested-routers==0.90.2
 idna==2.6
 kombu==4.1.0
