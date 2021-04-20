@@ -16,7 +16,7 @@ kombu==4.1.0
 more-itertools==4.3.0
 pkg-resources==0.0.0
 pluggy==0.7.1
-py==1.5.4
+py==1.10.0
 pytest==3.7.2
 pytest-django==3.4.2
 pytz==2018.3
